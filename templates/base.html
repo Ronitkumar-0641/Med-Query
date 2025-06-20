@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Medical Chatbot{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'medical-blue': '#0066cc',
+                        'medical-green': '#00a86b',
+                        'medical-gray': '#f8f9fa'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i data-feather="heart" class="h-8 w-8 text-medical-blue mr-3"></i>
+                    <span class="text-xl font-bold text-gray-800">Med Query</span>
+                </div>
+                {% if current_user.is_authenticated or session.get('is_admin') %}
+                <div class="flex items-center space-x-4">
+                    {% if session.get('is_admin') %}
+                        <span class="text-sm text-gray-600">Admin Panel</span>
+                        <a href="{{ url_for('admin') }}" class="text-medical-blue hover:text-blue-800">
+                            <i data-feather="users" class="h-5 w-5"></i>
+                        </a>
+                    {% else %}
+                        <span class="text-sm text-gray-600">Welcome, {{ current_user.username }}</span>
+                        <a href="{{ url_for('chat') }}" class="text-medical-blue hover:text-blue-800">
+                            <i data-feather="message-circle" class="h-5 w-5"></i>
+                        </a>
+                    {% endif %}
+                    <a href="{{ url_for('logout') }}" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                        <i data-feather="log-out" class="h-4 w-4 inline mr-1"></i>
+                        Logout
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} rounded-lg p-4 mb-4 {% if category == 'error' %}bg-red-100 border border-red-400 text-red-700{% elif category == 'success' %}bg-green-100 border border-green-400 text-green-700{% else %}bg-blue-100 border border-blue-400 text-blue-700{% endif %}">
+                        <div class="flex items-center">
+                            {% if category == 'error' %}
+                                <i data-feather="alert-circle" class="h-5 w-5 mr-2"></i>
+                            {% elif category == 'success' %}
+                                <i data-feather="check-circle" class="h-5 w-5 mr-2"></i>
+                            {% else %}
+                                <i data-feather="info" class="h-5 w-5 mr-2"></i>
+                            {% endif %}
+                            {{ message }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main class="flex-1">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="text-center text-gray-600">
+                <p>&copy; 2024 Medical Chatbot. For informational purposes only - always consult healthcare professionals.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
