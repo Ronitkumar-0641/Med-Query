@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Med Query{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-md w-full space-y-10">
+        <div class="text-center">
+            <div class="flex justify-center mb-4">
+                <span class="inline-flex items-center justify-center rounded-full bg-medical-blue bg-opacity-10 p-6">
+                    <i data-feather="activity" class="h-12 w-12 text-medical-blue"></i>
+                </span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">
+                Welcome to <span class="text-medical-blue">Med Query</span>
+            </h1>
+            <p class="text-base sm:text-lg text-gray-600">
+                Your AI-powered medical chatbot assistant for quick, reliable, and evidence-based health guidance.
+            </p>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="{{ url_for('login') }}" class="w-full sm:w-auto flex justify-center py-3 px-6 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-medical-blue hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-medical-blue transition-colors">
+                <i data-feather="log-in" class="h-5 w-5 mr-2"></i>
+                Sign In
+            </a>
+            <a href="{{ url_for('register') }}" class="w-full sm:w-auto flex justify-center py-3 px-6 border border-medical-blue rounded-lg shadow-sm text-base font-medium text-medical-blue bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-medical-blue transition-colors">
+                <i data-feather="user-plus" class="h-5 w-5 mr-2"></i>
+                Register
+            </a>
+        </div>
+        <div class="mt-8 text-center bg-white bg-opacity-90 rounded-xl shadow p-6">
+            <h2 class="text-lg font-semibold text-gray-800 mb-2">Why Med Query?</h2>
+            <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                <li>Personalized medical Q&amp;A with AI</li>
+                <li>Confidential and secure</li>
+                <li>Easy-to-use chat interface</li>
+                <li>Evidence-based, up-to-date information</li>
+                <li>Free for all users</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-import ososs
+import os
 import logging
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
@@ -68,10 +68,8 @@ def load_user(user_id):
     return None
 
 @app.route('/')
-def index():
-    if current_user.is_authenticated:
-        return redirect(url_for('chat'))
-    return redirect(url_for('login'))
+def home():
+    return render_template('home.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
