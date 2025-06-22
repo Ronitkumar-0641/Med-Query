@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Heart shape with white fill inside -->
+  <path d="M32 48s-13-8.5-13-18.5C19 22 25 18 32 25c7-7 13-3 13 4.5C45 39.5 32 48 32 48z" fill="#fff" stroke="#38bdf8" stroke-width="3" filter="url(#glow)"/>
+  <!-- Black outline for the pulse line (slimmest) -->
+  <polyline points="8,40 18,40 24,34 28,44 34,26 40,40 56,40" fill="none" stroke="#111" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Blue neon EKG pulse line -->
+  <polyline points="8,40 18,40 24,34 28,44 34,26 40,40 56,40" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#38bdf8" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+</svg>
